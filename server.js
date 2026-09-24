@@ -1,6 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
-require("dotenv").config();
+require("dotenv").config({ quiet: true });
 const productRoutes = require("./routes/productRoutes");
 const app = express();
 
@@ -30,6 +30,10 @@ app.get("/health", (req, res) => {
 // Lấy PORT từ file .env
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
+
+module.exports = app;

@@ -12,6 +12,21 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      mongodb:
+        image: mongo:8
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval \"db.adminCommand('ping')\""
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      MONGODB_URI: mongodb://localhost:27017/productdb
+      PORT: 3000
+
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -23,6 +38,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Run CRUD tests
+        run: npm test
 
       - name: Build Docker image
         run: docker build -t product-api .
