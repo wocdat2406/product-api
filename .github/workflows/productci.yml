@@ -53,3 +53,16 @@ jobs:
 
       - name: Push Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/product-api:latest
+  deploy:
+    needs: build
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Pull latest Docker images
+        run: docker compose -f docker-compose-prod.yaml pull
+
+      - name: Deploy to Local Docker Engine
+        run: docker compose -f docker-compose-prod.yaml up -d
