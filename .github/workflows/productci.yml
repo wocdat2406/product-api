@@ -42,5 +42,14 @@ jobs:
       - name: Run CRUD tests
         run: npm test
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build Docker image
-        run: docker build -t product-api .
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/product-api:latest .
+
+      - name: Push Docker image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/product-api:latest
