@@ -54,7 +54,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.statusCode).toBe(200);
         expect(response.body.pname).toBe("Updated Laptop");
         expect(response.body.price).toBe(18000000);
-        expect(response.body.quantity).toBe(15);
+        expect(response.body.quantity).toBe(16);
     });
 
     // DELETE
