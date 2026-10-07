@@ -38,6 +38,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.statusCode).toBe(200);
         expect(response.body.pid).toBe("TEST001");
         expect(response.body.pname).toBe("Test Laptop");
+        expect(response.body.quantity).toBe(10);
     });
 
     // UPDATE
