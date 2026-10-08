@@ -64,6 +64,7 @@ describe("Product API CRUD Tests", () => {
             .delete("/api/products/TEST001");
 
         expect(response.statusCode).toBe(200);
+        expect(response.body.message).toBeDefined();
         expect(response.body.message).toBe(
             "Product deleted successfully"
         );
