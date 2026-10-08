@@ -42,6 +42,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.body.quantity).toBe(10);
         expect(response.ok).toBe(true);
         //expect(response.body.price).toBe(15000000);
+        
     });
 
     // UPDATE
@@ -58,6 +59,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.body.pname).toBe("Updated Laptop");
         expect(response.body.price).toBe(18000000);
         expect(response.body.quantity).toBe(15);
+        expect(response.body.price).toBeGreaterThan(0);
         
     });
 
