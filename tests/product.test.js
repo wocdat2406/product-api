@@ -28,6 +28,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.statusCode).toBe(201);
         expect(response.body.pid).toBe("TEST001");
         expect(response.body.pname).toBe("Test Laptop");
+        expect(response.body._id).toBeDefined();
     });
 
     // READ
@@ -40,6 +41,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.body.pname).toBe("Test Laptop");
         expect(response.body.quantity).toBe(10);
         expect(response.ok).toBe(true);
+        //expect(response.body.price).toBe(15000000);
     });
 
     // UPDATE
@@ -56,6 +58,7 @@ describe("Product API CRUD Tests", () => {
         expect(response.body.pname).toBe("Updated Laptop");
         expect(response.body.price).toBe(18000000);
         expect(response.body.quantity).toBe(15);
+        
     });
 
     // DELETE
